@@ -1,0 +1,33 @@
+[Unit]
+
+Description=Minecraft Server
+
+After=network.target
+
+[Service]
+
+User=minecraft
+
+Nice=1
+
+KillMode=none
+
+SuccessExitStatus=0 1
+
+ProtectHome=true
+
+ProtectSystem=full
+
+PrivateDevices=true
+
+NoNewPrivileges=true
+
+WorkingDirectory=/var/minecraft/server
+
+ExecStart=/usr/bin/java -Xms2048M -Xmx5632M -jar paper.jar nogui
+
+ExecStop=/usr/local/bin/mcrcon -H 127.0.0.1 -P 25575 -p SuperSecretPassword stop
+
+[Install]
+
+WantedBy=multi-user.target
